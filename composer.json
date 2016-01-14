@@ -1,0 +1,13 @@
+{
+    "name": "vs/mnxweb-test-aspect-mock",
+    "require": {
+        "codeception/aspect-mock": "^0.5.5",
+        "phpunit/phpunit": "3.7.38"
+    },
+    "authors": [
+        {
+            "name": "Victor Sollerhed",
+            "email": "victor.sollerhed@ticnet.se"
+        }
+    ]
+}
