@@ -1,25 +1,54 @@
 <?php
 
-//include __DIR__.'/../vendor/autoload.php'; // composer autoload
+use AspectMock\Test as AspectMock;
+
+include __DIR__.'/../vendor/autoload.php';
 include __DIR__.'/../src/MyClass.php';
 
 class MyClassTest extends PHPUnit_Framework_TestCase{
 	
-	public function testTesting()
+	public function testClassMethodWithoutMocking()
 	{
-		$this->assertTrue(true);
-	}
-	
-	public function testTesting2()
-	{
-		$this->assertTrue(true);
+		// Before mocking:
+		$this->assertEquals('always this string', MyClass::myClassMethod());
 	}
 	
 	public function testMockingClassMethod()
 	{
-		$classMethodReturns = MyClass::myClassMethod();
-
-		$this->assertEquals('a', $classMethodReturns);
+		$this->initAspectMock();
+		
+		$mock = AspectMock::double(MyClass::class, ['myClassMethod' => 'a']);
+		
+		$classMethodReturned = MyClass::myClassMethod();
+		$mock->verifyInvoked('myClassMethod');
+		
+		var_dump($mock->getCallsForMethod('myClassMethod'));
+		
+		$this->assertEquals('a', $classMethodReturned);
+		
 	}
+	
+	protected function initAspectMock()
+	{
+		$kernel = \AspectMock\Kernel::getInstance();
+		$kernel->init([
+			'debug' => true,
+			'includePaths' => [
+				__DIR__.'../src/'
+			],
+			'excludePaths' => [
+				__DIR__	// tests
+			]
+		]);
+	}
+	
+	/*
+	// for later (when mocking works at all):
+	protected function tearDown()
+	{
+		// remove all registered test doubles
+		//AspectMock::clean();
+	}
+	*/
 
 }

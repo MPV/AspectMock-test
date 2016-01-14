@@ -1,3 +1,2 @@
-<phpunit bootstrap="bootstrap.php" backupGlobals="false">
-    
-</phpunit>
+<!--<phpunit bootstrap="bootstrap.php" backupGlobals="false"></phpunit>-->
+<phpunit backupGlobals="false"></phpunit>
