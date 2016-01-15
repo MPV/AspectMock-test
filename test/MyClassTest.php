@@ -15,6 +15,8 @@ class MyClassTest extends PHPUnit_Framework_TestCase{
 		$this->initAspectMock();
 		
 		$mock = \AspectMock\Test::double(MyClass::class, ['myClassMethod' => 'a']);
+		//$mock = \AspectMock\Test::double('MyClass', ['myClassMethod' => 'a']);
+		//$mock = \AspectMock\Test::double('\MyClass', ['myClassMethod' => 'a']);
 		
 		$classMethodReturned = MyClass::myClassMethod();
 		
@@ -29,9 +31,10 @@ class MyClassTest extends PHPUnit_Framework_TestCase{
 		$kernel = \AspectMock\Kernel::getInstance();
 		$kernel->init([
 			'debug' => true,
+			//'appDir' => __DIR__ . '../',
 			'includePaths' => [
 				__DIR__.'../src/',
-				__DIR__.'../vendor/',
+				//__DIR__.'../vendor/',
 			],
 			'excludePaths' => [
 				__DIR__,	// tests
