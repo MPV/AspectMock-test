@@ -36,7 +36,7 @@ class MyClassTest extends PHPUnit_Framework_TestCase{
 			'debug' => true,
 			//'appDir' => __DIR__ . '../',
 			'includePaths' => [
-				__DIR__.'../src/',
+				__DIR__.'/../src/',
 				//__DIR__.'../vendor/',
 			],
 			'excludePaths' => [
